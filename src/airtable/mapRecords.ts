@@ -33,7 +33,7 @@ export const mapRecords = ({
             : null,
         fields: Object.assign(
           { [destinationIdRef]: r.id },
-          ...destinationColumns.map((c, i) => ({ [c]: r.fields[sourceColumns[i]] })),
+          ...destinationColumns.map((c, i) => ({ [c]: r.fields[sourceColumns[i]] || null })),
         ),
       },
       (o) => isNil(o),
