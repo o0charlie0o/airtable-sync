@@ -88,7 +88,9 @@ export const syncTable = async ({
 
       const toDeleteRecords = destinationRecords
         .filter((r) => !isNil(r.fields[destinationIdRef]))
-        .filter((r) => sourceRecords.filter((s) => s.id === r.fields[destinationIdRef]).length === 0)
+        .filter(
+          (r) => sourceRecords.filter((s) => s.id === r.fields[destinationIdRef]).length === 0,
+        )
 
       if (!isNil(recordIteratee)) {
         const more = destinationRecords
@@ -97,9 +99,14 @@ export const syncTable = async ({
         toDeleteRecords.push(...more)
       }
 
-      toCreateRecords.length > 0 && syncedRecords.push(await destination.create({ table: dTable, records: toCreateRecords }))
-      toUpdateRecords.length > 0 && syncedRecords.push(await destination.update({ table: dTable, records: toUpdateRecords }))
-      toDeleteRecords.length > 0 && syncedRecords.push(await destination.delete({ table: dTable, ids: toDeleteRecords.map(r => r.id) }))
+      toCreateRecords.length > 0 &&
+        syncedRecords.push(await destination.create({ table: dTable, records: toCreateRecords }))
+      toUpdateRecords.length > 0 &&
+        syncedRecords.push(await destination.update({ table: dTable, records: toUpdateRecords }))
+      toDeleteRecords.length > 0 &&
+        syncedRecords.push(
+          await destination.delete({ table: dTable, ids: toDeleteRecords.map((r) => r.id) }),
+        )
 
       resolve(updatedRecords)
     } catch (e) {

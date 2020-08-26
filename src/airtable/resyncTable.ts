@@ -34,7 +34,7 @@ export const resyncTable = async ({
       const dIds = !isNil(recordIteratee)
         ? destinationRecords
             .map((d) => first(sourceRecords.filter((s) => recordIteratee(s, d))) || d)
-            .map((r) => typeof r !== 'undefined' ? r.id : null)
+            .map((r) => (typeof r !== 'undefined' ? r.id : null))
         : destinationRecords.map((r) => r.fields[destinationIdRef])
 
       const newRecords = sourceRecords.filter((r) => !dIds.includes(r.id))
@@ -58,7 +58,7 @@ export const resyncTable = async ({
       })
 
       const toDeleteRecords = difference(
-        dIds.filter(i => !isNil(i)),
+        dIds.filter((i) => !isNil(i)),
         sourceRecords.map((r) => r.id),
       )
 
