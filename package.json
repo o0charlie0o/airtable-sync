@@ -2,7 +2,7 @@
   "name": "airtable-sync",
   "version": "1.0.0",
   "description": "Syncs modified records between two Airtable bases",
-  "repository": "git@github.com:sentrey/airtable-sync.git",
+  "repository": "git@github.com:o0charlie0o/airtable-sync.git",
   "author": "Charlie Ray <charlie@dsrecordings.com>",
   "keywords": [
     "Airtable"
