@@ -8,7 +8,7 @@ export default class AirtableSync {
   source: AirtableCRUD
   destination: AirtableCRUD
 
-  constructor(config: { config: AirtableConfig } | null = null) {
+  constructor(config: AirtableConfig | null = null) {
     const sApiKey = <string>process.env.AIRTABLE_SYNC_API_KEY_SOURCE || get(config, 'sourceApiKey')
     const dApiKey =
       <string>process.env.AIRTABLE_SYNC_API_KEY_DESTINATION || get(config, 'destinationApiKey')
